@@ -1,6 +1,6 @@
 # PHP FILE UPLOAD
 
-`php.ini` 中与文件相关的配置，参考 [File Uploads](http://www.php.net/manual/zh/ini.core.php#ini.sect.file-uploads)
+`php.ini` 中与上传相关的配置，参考 [File Uploads](http://www.php.net/manual/zh/ini.core.php#ini.sect.file-uploads)
 
 ```ini
 ;;;;;;;;;;;;;;;;
