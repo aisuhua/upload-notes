@@ -3,6 +3,18 @@
 nginx
 
 ```text
+wget http://nginx.org/download/nginx-1.10.3.tar.gz
+wget "https://github.com/fdintino/nginx-upload-module/archive/master.zip"
+./configure --add-module=/root/nginx-upload-module-master
+make
+make install
+
+vim /etc/profile
+export PATH=/usr/local/nginx/sbin:$PATH
+
+apt-get install gcc make
+apt-get install libpcre3 libpcre3-dev openssl libssl-dev
+
 root@ubuntu-nginx:~/nginx-1.10.3# ./configure --add-module=/root/nginx-upload-module
 
 ./configure: error: the HTTP rewrite module requires the PCRE library.
@@ -10,7 +22,7 @@ You can either disable the module by using --without-http_rewrite_module
 option, or install the PCRE library into the system, or build the PCRE library
 statically from the source with nginx by using --with-pcre=<path> option.
 
-root@ubuntu-nginx:~/nginx-1.10.3# apt-get install pcre
+root@ubuntu-nginx:~/nginx-1.10.3# apt-get install libpcre3 libpcre3-dev
 
 ./configure: error: SSL modules require the OpenSSL library.
 You can either do not enable the modules, or install the OpenSSL library
@@ -91,11 +103,28 @@ Array
 )
 ```
 
+上传多个文件时见 demo3.html，接口返回内容如下：
+
+```text
+/www/web/demo/upload.php:3:
+array (size=12)
+  'image_name' => string 'IMG_2849.jpg' (length=12)
+  'image_content_type' => string 'image/jpeg' (length=10)
+  'image_path' => string '/www/web/demo/tmp/3/0000000003' (length=30)
+  'image_md5' => string 'D12222F694D51EA7C4B6127AEF029E91' (length=32)
+  'image_sha1' => string '821601037678D590FA2BDF6AEED0B7DF8865A2B5' (length=40)
+  'image_size' => string '152834' (length=6)
+  'picture_name' => string 'miwifi_ssh.bin' (length=14)
+  'picture_content_type' => string 'application/octet-stream' (length=24)
+  'picture_path' => string '/www/web/demo/tmp/4/0000000004' (length=30)
+  'picture_md5' => string '075D316B45118594EC3E7123BAAFFA50' (length=32)
+  'picture_sha1' => string '18FF92FE6740AEBA0D41027F5E69396B0D7BEA19' (length=40)
+  'picture_size' => string '4464' (length=4)
+```
+
 - [nginx-upload-module](https://github.com/fdintino/nginx-upload-module)
 
 ## 其他
-
-
 
 - [Resumable file upload in PHP: Handle large file uploads in an elegant way](https://hackernoon.com/resumable-file-upload-in-php-handle-large-file-uploads-in-an-elegant-way-e6c6dfdeaedb)
 - [tus-php](https://github.com/ankitpokhrel/tus-php/) 实现了断点续传的PHP库
