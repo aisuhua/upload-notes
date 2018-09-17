@@ -1,9 +1,5 @@
 # php upload
 
-## PHP 如何实现上传超大的文件？
-
-网络上大多方法是修改 `php.ini` 配置来实现，例如：实现支持上传 500M 的文件。
-
 ```ini
 [PHP]
 upload_max_filesize = 500M
